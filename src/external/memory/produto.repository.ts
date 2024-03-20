@@ -1,7 +1,7 @@
-import { ProdutoAdapter, ProdutoOutput } from "../../adapters/produto";
+import { ProdutoAdapter, ProdutoOutput } from "../../adapters/ponto";
 import { Produto } from "../../entities/produto.entity";
 import { ProdutoProps } from "../../entities/props/produto.props";
-import { IProdutoGateway } from "../../interfaces/gateway/produto.gateway.interface";
+import { IProdutoGateway } from "../../interfaces/gateway/ponto.gateway.interface";
 
 export class ProdutoRepositoryInMemory implements IProdutoGateway {
 	private produtos: Produto[] = [];

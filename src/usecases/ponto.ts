@@ -1,9 +1,9 @@
-import { ProdutoOutput } from "../adapters/produto";
+import { ProdutoOutput } from "../adapters/ponto";
 import { Produto } from "../entities/produto.entity";
 import { ProdutoProps } from "../entities/props/produto.props";
-import { IProdutoGateway } from "../interfaces/gateway/produto.gateway.interface";
+import { IProdutoGateway } from "../interfaces/gateway/ponto.gateway.interface";
 
-export class ProdutoUseCases {
+export class PontoUseCases {
 	static async CriarProduto(
 		produtoGatewayInterface: IProdutoGateway,
 		produtoProps: ProdutoProps

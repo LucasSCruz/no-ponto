@@ -1,51 +1,51 @@
 import axios from "axios";
-import { ClienteOutput } from "../adapters/cliente";
-import { Cliente } from "../entities/cliente.entity";
-import { ClienteProps } from "../entities/props/cliente.props";
-import { IClienteGateway } from "../interfaces";
+import { ColaboradorOutput } from "../adapters/Colaborador";
+import { Colaborador } from "../entities/Colaborador.entity";
+import { ColaboradorProps } from "../entities/props/Colaborador.props";
+import { IColaboradorGateway } from "../interfaces";
 import { IPedidoGateway } from "../interfaces/gateway/pedido.gateway.interface";
 
-export class ClienteUseCases {
-	static async CriarCliente(
-		clienteGatewayInterface: IClienteGateway,
-		clienteProps: ClienteProps
-	): Promise<ClienteOutput> {
-		const novoCliente = new Cliente(clienteProps);
-		const clienteExistente =
-			await clienteGatewayInterface.BuscarClientePorCPF(novoCliente.cpf);
+export class ColaboradorUseCases {
+	static async CriarColaborador(
+		ColaboradorGatewayInterface: IColaboradorGateway,
+		ColaboradorProps: ColaboradorProps
+	): Promise<ColaboradorOutput> {
+		const novoColaborador = new Colaborador(ColaboradorProps);
+		const ColaboradorExistente =
+			await ColaboradorGatewayInterface.BuscarColaboradorPorCPF(novoColaborador.cpf);
 
-		if (clienteExistente) {
-			throw new Error("Cliente já cadastrado");
+		if (ColaboradorExistente) {
+			throw new Error("Colaborador já cadastrado");
 		}
 
-		return clienteGatewayInterface.CriarCliente(novoCliente.object);
+		return ColaboradorGatewayInterface.CriarColaborador(novoColaborador.object);
 	}
 
-	static async BuscarClientePorCPF(
-		clienteGatewayInterface: IClienteGateway,
+	static async BuscarColaboradorPorCPF(
+		ColaboradorGatewayInterface: IColaboradorGateway,
 		CPF: string
-	): Promise<ClienteOutput | null> {
-		return clienteGatewayInterface.BuscarClientePorCPF(CPF);
+	): Promise<ColaboradorOutput | null> {
+		return ColaboradorGatewayInterface.BuscarColaboradorPorCPF(CPF);
 	}
 
-	static async BuscarTodosClientes(
-		clienteGatewayInterface: IClienteGateway
-	): Promise<ClienteOutput[] | null> {
-		return clienteGatewayInterface.BuscarTodosClientes();
+	static async BuscarTodosColaboradors(
+		ColaboradorGatewayInterface: IColaboradorGateway
+	): Promise<ColaboradorOutput[] | null> {
+		return ColaboradorGatewayInterface.BuscarTodosColaboradors();
 	}
 
-	static async DeletaClientePorCPF(
-		clienteGatewayInterface: IClienteGateway,
+	static async DeletaColaboradorPorCPF(
+		ColaboradorGatewayInterface: IColaboradorGateway,
 		pedidoGatewayInterface: IPedidoGateway,
 		CPF: string
 	): Promise<boolean> {
-		const cliente = await clienteGatewayInterface.BuscarClientePorCPF(CPF);
+		const Colaborador = await ColaboradorGatewayInterface.BuscarColaboradorPorCPF(CPF);
 
-		if (!cliente || !cliente.id) {
-			throw new Error("Cliente não encontrado");
+		if (!Colaborador || !Colaborador.id) {
+			throw new Error("Colaborador não encontrado");
 		}
 
-		const pedidos = await pedidoGatewayInterface.BuscarPedidosPorCliente(cliente.id);
+		const pedidos = await pedidoGatewayInterface.BuscarPedidosPorColaborador(Colaborador.id);
 
 		if (pedidos) {
 			for (const pedido of pedidos) {
@@ -53,7 +53,7 @@ export class ClienteUseCases {
 			}
 		}
 
-		await clienteGatewayInterface.DeletaClientePorCPF(CPF);
+		await ColaboradorGatewayInterface.DeletaColaboradorPorCPF(CPF);
 
 		return true;
 	}

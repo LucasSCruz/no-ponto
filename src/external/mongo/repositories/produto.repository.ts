@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb";
-import { ProdutoOutput } from "../../../adapters/produto";
+import { ProdutoOutput } from "../../../adapters/ponto";
 import { ProdutoProps } from "../../../entities/props/produto.props";
-import { IProdutoGateway } from "../../../interfaces/gateway/produto.gateway.interface";
-import { ProdutoMongo } from "../model/produto";
+import { IProdutoGateway } from "../../../interfaces/gateway/ponto.gateway.interface";
+import { ProdutoMongo } from "../model/ponto";
 
 export class ProdutoRepositoryInMongo implements IProdutoGateway {
 

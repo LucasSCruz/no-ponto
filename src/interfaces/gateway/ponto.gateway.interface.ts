@@ -1,7 +1,7 @@
-import { ProdutoOutput } from "../../adapters/produto";
+import { ProdutoOutput } from "../../adapters/ponto";
 import { ProdutoProps } from "../../entities/props/produto.props";
 
-export interface IProdutoGateway {
+export interface IPontoGateway {
     CriarProduto(produtoProps: ProdutoProps): Promise<ProdutoOutput>;
     BuscarProdutoPorDescricao(descricao: string): Promise<ProdutoOutput | null>;
     BuscarProdutoPorCategoria(categoria: string): Promise<ProdutoOutput[]>;

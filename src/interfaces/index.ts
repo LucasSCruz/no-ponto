@@ -1,1 +1,1 @@
-export * from "./gateway/cliente.gateway.interface";
+export * from "./gateway/colaborador.gateway.interface";

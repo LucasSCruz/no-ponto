@@ -1,8 +1,8 @@
-import { Cliente } from "../../../entities/cliente.entity";
+import { Cliente } from "../../../entities/colaborador.entity";
 import { IClienteGateway } from "../../../interfaces";
 import { ClienteOutput } from "../../../adapters/cliente";
-import { ClienteMongo } from "../model/cliente";
-import { ClienteProps } from "../../../entities/props/cliente.props";
+import { ClienteMongo } from "../model/colaborador";
+import { ClienteProps } from "../../../entities/props/colaborador.props";
 
 export class ClienteRepositoryInMongo implements IClienteGateway {
 	private _model;

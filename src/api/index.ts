@@ -12,19 +12,17 @@ export class LanchoneteCreusa {
 
 		const docsRoutes = require("./routes/docs");
 		const indexRoutes = require("./routes/routes");
-		const clienteRoutes = require("./routes/cliente");
-		const produtosRoutes = require("./routes/produto");
-		const pedidosRoutes = require("./routes/pedido");
+		const clienteRoutes = require("./routes/colaborador");
+		const produtosRoutes = require("./routes/ponto");
 
 		lanchoneteCreusa.use("/api", indexRoutes);
 		lanchoneteCreusa.use("/api-json", docsRoutes);
 		lanchoneteCreusa.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-		lanchoneteCreusa.use("/api/clientes", clienteRoutes);
-		lanchoneteCreusa.use("/api/produtos", produtosRoutes);
-		lanchoneteCreusa.use("/api/pedidos", pedidosRoutes);
+		lanchoneteCreusa.use("/api/colaborador", clienteRoutes);
+		lanchoneteCreusa.use("/api/ponto", produtosRoutes);
 
 		lanchoneteCreusa.listen(PORT, () => {
-			console.log(`Lanchonete da Creusa app listening on port ${PORT}`);
+			console.log(`No-ponto app listening on port ${PORT}`);
 		});
 	}
 }

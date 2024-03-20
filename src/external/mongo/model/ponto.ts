@@ -1,0 +1,22 @@
+import { CategoriaEnum } from "../../../common/enum/categoria-enum";
+
+const mongoose = require("mongoose");
+
+const PontoSchema = new mongoose.Schema(
+	{
+        idUsuario: {
+            type: Number,
+            required: true
+        },
+        dataCriacao: {
+            type: DateTime,
+            required: true,
+            enum: CategoriaEnum
+        }
+	},
+	{
+		timestamps: true,
+	}
+);
+
+export const ProdutoMongo = mongoose.model("Ponto", ProdutoSchema);
