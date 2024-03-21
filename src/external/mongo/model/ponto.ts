@@ -19,4 +19,4 @@ const PontoSchema = new mongoose.Schema(
 	}
 );
 
-export const ProdutoMongo = mongoose.model("Ponto", PontoSchema);
+export const PontoMongo = mongoose.model("Ponto", PontoSchema);

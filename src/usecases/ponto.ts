@@ -4,28 +4,26 @@ import { PontoProps } from "../entities/props/ponto.props";
 import { IPontoGateway } from "../interfaces/gateway/ponto.gateway.interface";
 
 export class PontoUseCases {
-	static async CriarPonto(
-		PontoGatewayInterface: IPontoGateway,
-		PontoProps: PontoProps
-	): Promise<PontoOutput> {
-		const pontoExistente = await PontoUseCases.BuscarPontoPorDescricao(
-			PontoGatewayInterface,
-			PontoProps.dataCriacao
-		);
-
-		if (pontoExistente) {
-			throw new Error("Ponto já cadastrado com essa descrição");
+	static async CriarPonto(PontoGatewayInterface: IPontoGateway, PontoProps: PontoProps): Promise<PontoOutput> {
+		try {
+			const pontoExistente = await PontoUseCases.BuscarPontoPorID(PontoGatewayInterface, PontoProps.descricao);
+	
+			if (pontoExistente) {
+				throw new Error("Ponto já cadastrado com essa descrição");
+			}
+	
+			const novoPonto = new Ponto(PontoProps);
+	
+			return await PontoGatewayInterface.CriarPonto(novoPonto.object);
+		} catch (error) {
+			throw error;
 		}
-
-		const novoPonto = new Ponto(PontoProps);
-
-		return PontoGatewayInterface.CriarPonto(novoPonto.object);
 	}
 
-	static async BuscarPontoPorDescricao(
+	static async BuscarPontoPorID(
 		PontoGatewayInterface: IPontoGateway,
-		descricao: string
+		id: string
 	): Promise<PontoOutput | null> {
-		return PontoGatewayInterface.BuscarPontoPorDescricao(descricao);
+		return PontoGatewayInterface.BuscarPontoPorID(id);
 	}
 }
