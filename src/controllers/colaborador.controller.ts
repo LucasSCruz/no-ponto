@@ -4,21 +4,20 @@ import { IColaboradorGateway } from "../interfaces";
 import { ColaboradorUseCases } from "../usecases/colaborador";
 
 export class ColaboradorController {
-
+	
 	static async CriarColaborador(
-		IColaboradorGateway,
-		ColaboradorProps
+		colaboradorGateway: IColaboradorGateway,
+		colaboradorProps: ColaboradorProps
 	): Promise<ColaboradorOutput> {
 		try {
 			return await ColaboradorUseCases.CriarColaborador(
-				IColaboradorGateway,
-				ColaboradorProps
+				colaboradorGateway,
+				colaboradorProps
 			);
 		} catch (error) {
 			throw error;
 		}
 	}
-
 	static async ValidarColaborador(
 		clienteGatewayInterface: IColaboradorGateway,
 		cpf: string

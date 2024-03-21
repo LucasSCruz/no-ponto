@@ -39,16 +39,16 @@ const produtoRepositoryInMongo = new PontoRepositoryInMongo();
  *       201:
  *         description: Ponto criado com sucesso.
  */
-router.post("/", async (req: Request, res: Response) => {
-	try {
-		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
-		res.status(201).send(response);
-		return;
-	} catch (err: any) {
-		res.status(400).send({ message: err?.message })
-		return;
-	}
-});
+// router.post("/", async (req: Request, res: Response) => {
+// 	try {
+// 		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
+// 		res.status(201).send(response);
+// 		return;
+// 	} catch (err: any) {
+// 		res.status(400).send({ message: err?.message })
+// 		return;
+// 	}
+// });
 
 
 
@@ -70,16 +70,20 @@ router.post("/", async (req: Request, res: Response) => {
  *       200:
  *         description: Produto encontrado
  */
-router.get("/descricao/:descricao", async (req, res) => {
-	res.setHeader("Content-type", "application/json");
 
-	const response = await PontoController.BuscarProdutoPorDescricao(
-		pontoRepositoryInMongo,
-		req.params.descricao
-	);
 
-	res.json(response);
-	return;
-});
+// router.get("/descricao/:descricao", async (req, res) => {
+// 	try {
+// 		const descricao = req.params.descricao;
+// 		const response = await PontoController.BuscarPontoPorID(descricao);
+// 		res.json(response);
+// 	} catch (error) {
+// 		res.status(500).json({ error: "Internal server error" });
+// 	}
+// });
+
+
+
+
 
 module.exports = router;
