@@ -4,18 +4,18 @@ import { PontoProps } from "../../entities/props/ponto.props";
 import { IPontoGateway } from "../../interfaces/gateway/ponto.gateway.interface";
 
 export class PontoRepositoryInMemory implements IPontoGateway {
-	private produtos: Ponto[] = [];
+	private ponto: Ponto[] = [];
 
 	async CriarProduto(produtoProps: PontoProps): Promise<PontoOutput> {
 		const produto = new Ponto(produtoProps);
-		this.produtos.push(produto);
+		this.ponto.push(produto);
 		return PontoAdapter.adaptJsonPonto(produto);
 	}
 
 	async BuscarPontoPorID(
 		idUsuario: number
 	): Promise<PontoOutput | null> {
-		const produtoExistente = this.produtos.find(
+		const produtoExistente = this.ponto.find(
 			(ponto) => ponto.idUsuario === idUsuario
 		);
 

@@ -19,12 +19,12 @@ export class PontoController {
 	}
 
 	static async BuscarPontoPorDescricao(
-		PontoGatewayInterface: IPontoGateway,
+		pontoGateway: IPontoGateway,
 		descricao: string
 	): Promise<PontoOutput | null> {
 		try {
 			return await PontoUseCases.BuscarPontoPorDescricao(
-				pontoGatewayInterface,
+				pontoGateway,
 				descricao
 			);
 		} catch (error) {

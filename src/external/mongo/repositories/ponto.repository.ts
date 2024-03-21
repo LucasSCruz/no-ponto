@@ -6,21 +6,18 @@ import { PontoMongo } from "../model/ponto";
 
 export class PontoRepositoryInMongo implements IPontoGateway {
 
-	private _model;
+    private _model;
 
-	constructor() {
-		this._model = PontoMongo;
-	}
+    constructor() {
+        this._model = PontoMongo;
+    }
 
-	async CriarPonto(novoPonto: PontoProps): Promise<PontoOutput> {
-		return this._model.create(novoPonto);
-	}
+    async CriarPonto(novoPonto: PontoProps): Promise<PontoOutput> {
+        return this._model.create(novoPonto);
+    }
 
-	async BuscarPontoPorDescricao(
-		descricao: string
-	): Promise<PontoOutput | null> {
-		return this._model.findOne({ descricao });
-	}
-
+	async BuscarPontoPorID(PontoID: string): Promise<PontoOutput | null> {
+        return this._model.findById(PontoID);
+    }
 
 }
