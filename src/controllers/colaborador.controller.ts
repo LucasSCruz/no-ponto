@@ -1,19 +1,18 @@
-import { ColaboradorOutput } from "../adapters/cliente";
+import { ColaboradorOutput } from "../adapters/colaborador";
 import { ColaboradorProps } from "../entities/props/colaborador.props";
 import { IColaboradorGateway } from "../interfaces";
-import { IPedidoGateway } from "../interfaces/gateway/pedido.gateway.interface";
-import { ColaboradorUseCases } from "../usecases/cliente";
+import { ColaboradorUseCases } from "../usecases/colaborador";
 
 export class ColaboradorController {
 
 	static async CriarColaborador(
-		colaboradoraboradorGateway,
-		colaboradoradorProColaboradoraboradorProps
+		IColaboradorGateway,
+		ColaboradorProps
 	): Promise<ColaboradorOutput> {
 		try {
-			return await ColaboradorUseCases.CriarColaboradorador(
-				colaboradorGatewayInterface,
-				colaboradoradorProColaboradoraboradorProps
+			return await ColaboradorUseCases.CriarColaborador(
+				IColaboradorGateway,
+				ColaboradorProps
 			);
 		} catch (error) {
 			throw error;
@@ -25,7 +24,7 @@ export class ColaboradorController {
 		cpf: string
 	): Promise<ColaboradorOutput | null> {
 		try {
-			return await ClienteUseCases.ValidarColaborador(
+			return await ColaboradorUseCases.ValidarColaborador(
 				clienteGatewayInterface,
 				cpf
 			);

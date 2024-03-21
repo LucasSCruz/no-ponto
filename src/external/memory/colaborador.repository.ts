@@ -20,6 +20,6 @@ export class ColaboradorRepositoryInMemory implements IColaboradorGateway {
 			return null;
 		}
 
-		return ColaboradorAdapter.adaptJsonCliente(cliente);
+		return ColaboradorAdapter.adaptJsonColaborador(cliente);
 	}
 }

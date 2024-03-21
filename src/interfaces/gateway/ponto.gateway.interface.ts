@@ -1,11 +1,7 @@
-import { ProdutoOutput } from "../../adapters/ponto";
-import { ProdutoProps } from "../../entities/props/produto.props";
+import { PontoOutput } from "../../adapters/ponto";
+import { PontoProps } from "../../entities/props/ponto.props";
 
 export interface IPontoGateway {
-    CriarProduto(produtoProps: ProdutoProps): Promise<ProdutoOutput>;
-    BuscarProdutoPorDescricao(descricao: string): Promise<ProdutoOutput | null>;
-    BuscarProdutoPorCategoria(categoria: string): Promise<ProdutoOutput[]>;
-    BuscarProdutoPorID(produtoID: string): Promise<ProdutoOutput>;
-    EditarProduto(produtoProps: ProdutoProps): Promise<ProdutoOutput>;
-    DeletarProduto(produtoID: string): Promise<void>;
+    CriarPonto(PontoProps: PontoProps): Promise<PontoOutput>;
+    BuscarPontoPorID(PontoID: string): Promise<PontoOutput>;
 }

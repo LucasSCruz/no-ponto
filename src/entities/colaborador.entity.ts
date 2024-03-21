@@ -1,10 +1,8 @@
 import { ColaboradorProps } from './props/colaborador.props';
-import { Email } from './valuesObjects/email';
-import { CPF } from './valuesObjects/cpf';
 
 export class Colaborador {
     private _id?: string | undefined;
-    private _email: Email;
+    private _email: string;
     private _senha: string
 
     constructor(coloaboradorProps: ColaboradorProps) {
@@ -12,7 +10,7 @@ export class Colaborador {
             this._id = coloaboradorProps.id;
         }
         this._senha = coloaboradorProps.senha;
-        this._email = new Email(coloaboradorProps.email);
+        this._email = coloaboradorProps.email;
     }
 
     get id(): string | undefined {
@@ -24,14 +22,14 @@ export class Colaborador {
     }
 
     get email(): string {
-        return this._email.email;
+        return this._email;
     }
 
     get object(): ColaboradorProps {
         return {
             id: this._id,
             senha: this._senha,
-            email: this._email.email,
+            email: this._email,
         }
     }
 

@@ -3,25 +3,25 @@ import { PontoProps } from './props/ponto.props';
 export class Ponto {
     private _id?: string | undefined;
     private _idUsuario: number;
-    private _dataCriacao: DateTime
+    private _dataCriacao: Date
 
-    constructor(clienteProps: PontoProps) {
-        if (clienteProps.id) {
-            this._id = clienteProps.id;
+    constructor(pontoProps: PontoProps) {
+        if (pontoProps.id) {
+            this._id = pontoProps.id;
         }
-        this._senha = pontoProps.idUsuario;
-        this._dataCriacao = new DateTime
+        this._idUsuario = pontoProps.idUsuario;
+        this._dataCriacao = new Date
     }
 
     get id(): string | undefined {
         return this._id;
     }
 
-    get idUsuario(): string {
+    get idUsuario(): number {
         return this.idUsuario;
     }
 
-    get dataCriacao(): string {
+    get dataCriacao(): Date {
         return this._dataCriacao;
     }
 

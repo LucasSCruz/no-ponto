@@ -4,27 +4,27 @@ import { IPontoGateway } from "../interfaces/gateway/ponto.gateway.interface";
 import { PontoUseCases } from "../usecases/ponto";
 
 export class PontoController {
-	static async CriarProduto(
-		produtoGatewayInterface: IPontoGateway,
-		produtoProps: PontoProps
+	static async CriarPonto(
+		prontoGatewayInterface: IPontoGateway,
+		prontoProps: PontoProps
 	): Promise<PontoOutput> {
 		try {
-			return await PontoUseCases.CriarProduto(
-				produtoGatewayInterface,
-				produtoProps
+			return await PontoUseCases.CriarPonto(
+				prontoGatewayInterface,
+				prontoProps
 			);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	static async BuscarProdutoPorDescricao(
-		produtoGatewayInterface: IPontoGateway,
+	static async BuscarPontoPorDescricao(
+		PontoGatewayInterface: IPontoGateway,
 		descricao: string
 	): Promise<PontoOutput | null> {
 		try {
-			return await PontoUseCases.BuscarProdutoPorDescricao(
-				produtoGatewayInterface,
+			return await PontoUseCases.BuscarPontoPorDescricao(
+				pontoGatewayInterface,
 				descricao
 			);
 		} catch (error) {

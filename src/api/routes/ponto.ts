@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
-import { ProdutoRepositoryInMongo } from "../../external/mongo/repositories/produto.repository";
-import { ProdutoController } from "../../controllers/ponto.controller";
+import { PontoRepositoryInMongo } from "../../external/mongo/repositories/ponto.repository";
+import { PontoController } from "../../controllers/ponto.controller";
 import { resolve } from "path";
 
 const router = express.Router();
-const produtoRepositoryInMongo = new ProdutoRepositoryInMongo();
+const produtoRepositoryInMongo = new PontoRepositoryInMongo();
 
 /**
  * @swagger
@@ -37,11 +37,11 @@ const produtoRepositoryInMongo = new ProdutoRepositoryInMongo();
  *               categoria: sobremesa
  *     responses:
  *       201:
- *         description: Produto criado com sucesso.
+ *         description: Ponto criado com sucesso.
  */
 router.post("/", async (req: Request, res: Response) => {
 	try {
-		const response = await ProdutoController.CriarProduto(produtoRepositoryInMongo, req.body);
+		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
 		res.status(201).send(response);
 		return;
 	} catch (err: any) {
@@ -73,8 +73,8 @@ router.post("/", async (req: Request, res: Response) => {
 router.get("/descricao/:descricao", async (req, res) => {
 	res.setHeader("Content-type", "application/json");
 
-	const response = await ProdutoController.BuscarProdutoPorDescricao(
-		produtoRepositoryInMongo,
+	const response = await PontoController.BuscarProdutoPorDescricao(
+		pontoRepositoryInMongo,
 		req.params.descricao
 	);
 

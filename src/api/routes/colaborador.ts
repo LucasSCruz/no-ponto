@@ -1,11 +1,9 @@
 import express, { Request, Response } from "express";
-import { ClienteController } from "../../controllers/colaborador.controller";
-import { ClienteRepositoryInMongo } from "../../external/mongo/repositories/cliente.repository";
-import { PedidoRepositoryInMongo } from "../../external/mongo/repositories/pedido.repository";
+import { ColaboradorController } from "../../controllers/colaborador.controller";
+import { ColaboradorRepositoryInMongo } from "../../external/mongo/repositories/colaborador.repository";
 
 const router = express.Router();
-const clienteRepositoryInMongo = new ClienteRepositoryInMongo();
-const pedidoRepositoryInMongo = new PedidoRepositoryInMongo();
+const colaboradorRepositoryInMongo = new ColaboradorRepositoryInMongo();
 
 /**
  * @swagger
@@ -41,7 +39,7 @@ const pedidoRepositoryInMongo = new PedidoRepositoryInMongo();
  *         description: Usuário criado com sucesso.
  */
 router.post("/", async (req: Request, res: Response) => {
-	return await ClienteController.CriarColaborador(clienteRepositoryInMongo, req.body)
+	return await ColaboradorController.CriarColaborador(colaboradorRepositoryInMongo, req.body)
 		.then((response: any) => {
 			return res.status(201).send(response);
 		})
@@ -71,7 +69,7 @@ router.post("/", async (req: Request, res: Response) => {
 router.get("/cpf/:cpf", async (req, res) => {
 	res.setHeader("Content-type", "application/json");
 	return res.json(
-		await ClienteController.ValidarColaborador(clienteRepositoryInMongo, req.params.cpf)
+		await ColaboradorController.ValidarColaborador(colaboradorRepositoryInMongo, req.params.cpf)
 	);
 });
 

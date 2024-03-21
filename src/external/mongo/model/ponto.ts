@@ -9,7 +9,7 @@ const PontoSchema = new mongoose.Schema(
             required: true
         },
         dataCriacao: {
-            type: DateTime,
+            type: Date,
             required: true,
             enum: CategoriaEnum
         }
@@ -19,4 +19,4 @@ const PontoSchema = new mongoose.Schema(
 	}
 );
 
-export const ProdutoMongo = mongoose.model("Ponto", ProdutoSchema);
+export const ProdutoMongo = mongoose.model("Ponto", PontoSchema);
