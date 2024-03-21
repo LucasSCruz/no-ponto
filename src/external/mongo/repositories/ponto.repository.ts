@@ -16,7 +16,7 @@ export class PontoRepositoryInMongo implements IPontoGateway {
         return this._model.create(novoPonto);
     }
 
-	async BuscarPontoPorID(PontoID: string): Promise<PontoOutput | null> {
+	async BuscarPontoPorID(PontoID: string): Promise<PontoOutput> {
         return this._model.findById(PontoID);
     }
 

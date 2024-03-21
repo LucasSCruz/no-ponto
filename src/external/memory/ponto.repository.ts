@@ -4,25 +4,26 @@ import { PontoProps } from "../../entities/props/ponto.props";
 import { IPontoGateway } from "../../interfaces/gateway/ponto.gateway.interface";
 
 export class PontoRepositoryInMemory implements IPontoGateway {
+	CriarPonto(pontoProps: PontoProps): Promise<PontoOutput> {
+		throw new Error("Method not implemented.");
+	}
 	private ponto: Ponto[] = [];
 
-	async CriarProduto(produtoProps: PontoProps): Promise<PontoOutput> {
-		const produto = new Ponto(produtoProps);
+	async CriarProduto(pontoProps: PontoProps): Promise<PontoOutput> {
+		const produto = new Ponto(pontoProps);
 		this.ponto.push(produto);
 		return PontoAdapter.adaptJsonPonto(produto);
 	}
 
-	async BuscarPontoPorID(
-		idUsuario: number
-	): Promise<PontoOutput | null> {
-		const produtoExistente = this.ponto.find(
-			(ponto) => ponto.idUsuario === idUsuario
+	async BuscarPontoPorID(pontoID: string): Promise<PontoOutput> {
+		const pontoExistente = this.ponto.find(
+			(ponto) => ponto.id === pontoID
 		);
 
-		if (!produtoExistente) {
-			return null;
+		if (!pontoExistente) {
+			throw new Error("Ponto não encontrado");
 		}
 
-		return PontoAdapter.adaptJsonPonto(produtoExistente);
+		return PontoAdapter.adaptJsonPonto(pontoExistente);
 	}
 }
