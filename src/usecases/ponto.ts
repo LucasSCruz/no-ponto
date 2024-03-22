@@ -7,7 +7,6 @@ export class PontoUseCases {
 	static async CriarPonto(PontoGatewayInterface: IPontoGateway, PontoProps: PontoProps): Promise<PontoOutput> {
 		try {
 			const pontoExistente = await PontoUseCases.BuscarPontoPorID(PontoGatewayInterface, PontoProps.descricao);
-	
 			if (pontoExistente) {
 				throw new Error("Ponto já cadastrado com essa descrição");
 			}
