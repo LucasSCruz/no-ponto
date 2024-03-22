@@ -39,14 +39,14 @@ router.post("/", async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/produtos/descricao/{descricao}:
- *   get:
- *     summary: Lista ponto
+ * /api/ponto:
+ *   post:
+ *     summary: Lista ponto.
+ *     tags: [Ponto]
  *     responses:
- *       200:
- *         description: Ponto
+ *       201:
+ *         description: Ponto encontrados.
  */
-
 
 router.get("/token", async (req: Request, res: Response) => {
     try {
