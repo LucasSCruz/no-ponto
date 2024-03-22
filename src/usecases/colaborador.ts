@@ -11,7 +11,7 @@ export class ColaboradorUseCases {
     ): Promise<ColaboradorOutput> {
         const novoColaborador = new Colaborador(colaboradorProps);
         const colaboradorExistente =
-            await ColaboradorGatewayInterface.ValidarColaborador(novoColaborador.email);
+            await ColaboradorGatewayInterface.ValidarEGerarToken(novoColaborador.email);
 
         if (colaboradorExistente) {
             throw new Error("Colaborador já cadastrado");
@@ -20,10 +20,10 @@ export class ColaboradorUseCases {
         return ColaboradorGatewayInterface.CriarColaborador(novoColaborador.object);
     }
 
-    static async ValidarColaborador(
+    static async ValidarEGerarToken(
         ColaboradorGatewayInterface: IColaboradorGateway,
-        CPF: string
-    ): Promise<ColaboradorOutput | null> {
-        return ColaboradorGatewayInterface.ValidarColaborador(CPF);
+        email: string
+    ): Promise<string | null> {
+        return ColaboradorGatewayInterface.ValidarEGerarToken(email);
     }
 }

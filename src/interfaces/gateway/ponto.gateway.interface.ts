@@ -3,5 +3,5 @@ import { PontoProps } from "../../entities/props/ponto.props";
 
 export interface IPontoGateway {
     CriarPonto(PontoProps: PontoProps): Promise<PontoOutput>;
-    BuscarPontoPorID(PontoID: string): Promise<PontoOutput>;
+    BuscarPonto(PontoIDUsario: number): Promise<PontoOutput>;
 }

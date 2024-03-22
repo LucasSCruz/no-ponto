@@ -13,30 +13,13 @@ const colaboradorRepositoryInMongo = new ColaboradorRepositoryInMongo();
 
 /**
  * @swagger
- * /api/clientes:
+ * /api/colaborador:
  *   post:
  *     summary: Cria um novo Colaborador.
- *     tags: [Cliente]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               nome:
- *                 type: string
- *               email:
- *                 type: string
- *               cpf:
- *                 type: string
- *             example:
- *               nome: João
- *               email: joão@joão.com.br
- *               cpf: 360.635.210-70
+ *     tags: [Colaborador]
  *     responses:
  *       201:
- *         description: Usuário criado com sucesso.
+ *         description: Colaborador criado com sucesso.
  */
 router.post("/", async (req: Request, res: Response) => {
 	return await ColaboradorController.CriarColaborador(colaboradorRepositoryInMongo, req.body)
@@ -53,23 +36,14 @@ router.post("/", async (req: Request, res: Response) => {
  * /api/clientes/cpf/{cpf}:
  *   get:
  *     summary: Autentica Colaborador
- *     tags: [Cliente]
- *     parameters:
- *       - in: path
- *         name: cpf
- *         required: true
- *         schema:
- *           type: string
- *         description: CPF do cliente a ser retornado.
- *     description: Retorna cliente com o CPF informado.
  *     responses:
  *       200:
  *         description: Cliente encontrado
  */
-router.get("/cpf/:cpf", async (req, res) => {
+router.get("/email/:email", async (req, res) => {
 	res.setHeader("Content-type", "application/json");
 	return res.json(
-		await ColaboradorController.ValidarColaborador(colaboradorRepositoryInMongo, req.params.cpf)
+		await ColaboradorController.ValidarEGerarToken(colaboradorRepositoryInMongo, req.params.email)
 	);
 });
 

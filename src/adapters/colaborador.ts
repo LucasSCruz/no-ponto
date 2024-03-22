@@ -7,26 +7,9 @@ export interface ColaboradorOutput {
 }
 
 export const ColaboradorAdapter = {
-	adaptJsonColaboradores: function (
-		colaboradores: Colaborador[] | null
-	): ColaboradorOutput[] | null {
-		if (colaboradores === null) {
-			return null;
-		}
-
-		return colaboradores.map(function (item) {
-			return {
-				id: item.id,
-				email: item.email,
-				senha: item.senha,
-			};
-		});
-	},
-	adaptJsonColaborador: function (cliente: Colaborador): ColaboradorOutput {
+	adaptJsonColaborador: function (token: string) {
 		return {
-			id: cliente.id,
-			email: cliente.email,
-			senha: cliente.senha,
+			token
 		};
 	},
 };

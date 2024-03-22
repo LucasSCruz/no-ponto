@@ -16,4 +16,4 @@ const ColaboradorSchema = new mongoose.Schema(
 	}
 );
 
-export const ColaboradorMongo = mongoose.model("Usuario", ColaboradorSchema);
+export const ColaboradorMongo = mongoose.model("Colaborador", ColaboradorSchema);
