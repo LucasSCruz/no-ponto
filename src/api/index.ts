@@ -21,7 +21,7 @@ export class RegistraPonto {
 		RegistraPonto.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 		RegistraPonto.use("/api/colaborador", clienteRoutes);
 		RegistraPonto.use("/api/ponto", produtosRoutes);
-		RegistraPonto.use("/api/email", emailRoutes);
+		RegistraPonto.use("/api/email/", emailRoutes);
 
 		RegistraPonto.listen(PORT, () => {
 			console.log(`No-ponto app listening on port ${PORT}`);

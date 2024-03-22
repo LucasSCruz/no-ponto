@@ -6,9 +6,9 @@ export class RegistrationConfirmationEmailUseCase {
   
     async execute(userEmail: string): Promise<void> {
       const emailProps: EmailProps = {
-        to: userEmail,
-        subject: 'Confirmação de Registro',
-        message: 'Obrigado por se registrar em nosso serviço!'
+        to: 'lucasscruz2001@gmail.com, igor.fanticheli@gmail.com', //userEmail,
+        subject: 'FIAP',
+        message: 'Boa noite, foi verificado em nossos sistema que voce foi aprovado. boa noite!'
       };
   
       try {

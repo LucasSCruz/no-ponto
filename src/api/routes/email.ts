@@ -8,7 +8,7 @@ const emailService = new EmailService()
 const registrationConfirmationUseCase = new RegistrationConfirmationEmailUseCase(emailService);
 
 
-router.post('/email', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const userEmail = req.body.email;
 
     if (!userEmail) {

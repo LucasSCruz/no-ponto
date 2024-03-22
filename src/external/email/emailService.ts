@@ -5,22 +5,23 @@ import { IEmail } from '../../interfaces/gateway/email.gateway.interface';
 export class EmailService implements IEmail {
     async sendEmail(emailProps: EmailProps): Promise<void> {
         const transporter = nodemailer.createTransport({
-            service: 'nresponsea',
+            service: 'Gmail',
             auth: {
-                user: 'napoleonc05@nresponsea.com',
-                pass: '35546b03f9ce91e0fc9779c8b7dc654f' 
+                user: '', 
+                pass: '' 
             }
         });
 
         const mailOptions = {
-            from: 'cassio3620@gmail', 
+            from: 'igor.fanticheli@gmail.com',
             to: emailProps.to, 
             subject: emailProps.subject, 
             text: emailProps.message 
         };
 
         try {
-          await transporter.sendMail(mailOptions);
+          const validate =  await transporter.sendMail(mailOptions);
+          console.log(validate)
           console.info('Sucess')
         } catch (error) {
             console.error('Erro ao enviar e-mail:', error);
