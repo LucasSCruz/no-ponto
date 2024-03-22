@@ -33,13 +33,15 @@ router.post("/", async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/clientes/cpf/{cpf}:
- *   get:
- *     summary: Autentica Colaborador
+ * /api/colaborador:
+ *   post:
+ *     summary: Validar colaborador.
+ *     tags: [Colaborador]
  *     responses:
- *       200:
- *         description: Cliente encontrado
+ *       201:
+ *         description: Colaborador autenticado com sucesso.
  */
+
 router.get("/email/:email", async (req, res) => {
 	res.setHeader("Content-type", "application/json");
 	return res.json(
