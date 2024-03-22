@@ -4,7 +4,7 @@ import { PontoController } from "../../controllers/ponto.controller";
 import { resolve } from "path";
 
 const router = express.Router();
-const produtoRepositoryInMongo = new PontoRepositoryInMongo();
+const pontoRepositoryInMongo = new PontoRepositoryInMongo();
 
 /**
  * @swagger
@@ -39,16 +39,16 @@ const produtoRepositoryInMongo = new PontoRepositoryInMongo();
  *       201:
  *         description: Ponto criado com sucesso.
  */
-// router.post("/", async (req: Request, res: Response) => {
-// 	try {
-// 		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
-// 		res.status(201).send(response);
-// 		return;
-// 	} catch (err: any) {
-// 		res.status(400).send({ message: err?.message })
-// 		return;
-// 	}
-// });
+ router.post("/", async (req: Request, res: Response) => {
+ 	try {
+ 		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
+ 		res.status(201).send(response);
+		return;
+ 	} catch (err: any) {
+ 		res.status(400).send({ message: err?.message })
+ 		return;
+ 	}
+ });
 
 
 
@@ -72,15 +72,15 @@ const produtoRepositoryInMongo = new PontoRepositoryInMongo();
  */
 
 
-// router.get("/descricao/:descricao", async (req, res) => {
-// 	try {
-// 		const descricao = req.params.descricao;
-// 		const response = await PontoController.BuscarPontoPorID(descricao);
-// 		res.json(response);
-// 	} catch (error) {
-// 		res.status(500).json({ error: "Internal server error" });
-// 	}
-// });
+ router.get("/idUsuario/:idUsuario", async (req, res) => {
+ 	try {
+ 		const idUsuario = req.params.idUsuario;
+ 		const response = await PontoController.BuscarPonto(pontoRepositoryInMongo,Number(idUsuario));
+		res.json(response);
+ 	} catch (error) {
+ 		res.status(500).json({ error: "Internal server error" });
+ 	}
+ });
 
 
 

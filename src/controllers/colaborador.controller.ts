@@ -18,14 +18,14 @@ export class ColaboradorController {
 			throw error;
 		}
 	}
-	static async ValidarColaborador(
+	static async ValidarEGerarToken(
 		clienteGatewayInterface: IColaboradorGateway,
-		cpf: string
-	): Promise<ColaboradorOutput | null> {
+		email: string
+	): Promise<string | null> {
 		try {
-			return await ColaboradorUseCases.ValidarColaborador(
+			return await ColaboradorUseCases.ValidarEGerarToken(
 				clienteGatewayInterface,
-				cpf
+				email
 			);
 		} catch (error) {
 			throw error;

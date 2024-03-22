@@ -13,7 +13,7 @@ export class ColaboradorRepositoryInMemory implements IColaboradorGateway {
 		return novoColaborador.object;	
 	}
 
-	async ValidarColaborador(email: string): Promise<ColaboradorOutput | null> {
+	async ValidarEGerarToken(email: string): Promise<ColaboradorOutput | null> {
 		const cliente = this.clientes.find((cliente) => cliente.email === email);
 
 		if (!cliente) {

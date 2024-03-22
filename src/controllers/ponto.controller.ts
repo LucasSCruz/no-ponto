@@ -18,14 +18,14 @@ export class PontoController {
 		}
 	}
 
-	static async BuscarPontoPorID(
+	static async BuscarPonto(
 		pontoGateway: IPontoGateway,
-		descricao: string
+		idUsuario: number
 	): Promise<PontoOutput | null> {
 		try {
-			return await PontoUseCases.BuscarPontoPorID(
+			return await PontoUseCases.BuscarPonto(
 				pontoGateway,
-				descricao
+				idUsuario
 			);
 		} catch (error) {
 			throw error;

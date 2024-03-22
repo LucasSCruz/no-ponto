@@ -15,7 +15,7 @@ export class PontoRepositoryInMemory implements IPontoGateway {
 		return PontoAdapter.adaptJsonPonto(produto);
 	}
 
-	async BuscarPontoPorID(pontoID: string): Promise<PontoOutput> {
+	async BuscarPonto(pontoID: string): Promise<PontoOutput> {
 		const pontoExistente = this.ponto.find(
 			(ponto) => ponto.id === pontoID
 		);
