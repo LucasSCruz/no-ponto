@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { PontoRepositoryInMongo } from "../../external/mongo/repositories/ponto.repository";
 import { PontoController } from "../../controllers/ponto.controller";
-import { resolve } from "path";
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 const pontoRepositoryInMongo = new PontoRepositoryInMongo();
@@ -39,16 +39,19 @@ const pontoRepositoryInMongo = new PontoRepositoryInMongo();
  *       201:
  *         description: Ponto criado com sucesso.
  */
- router.post("/", async (req: Request, res: Response) => {
- 	try {
- 		const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
- 		res.status(201).send(response);
-		return;
- 	} catch (err: any) {
- 		res.status(400).send({ message: err?.message })
- 		return;
- 	}
- });
+router.post("/", async (req: Request, res: Response) => {
+    try {
+        // Fazer a chamada ao endpoint, incluindo o token no cabeçalho Authorization
+        const response = await PontoController.CriarPonto(pontoRepositoryInMongo, req.body);
+
+        // Retornar a resposta do endpoint
+        res.status(201).send(response);
+        return;
+    } catch (err: any) {
+        res.status(400).send({ message: err?.message })
+        return;
+    }
+});
 
 
 
@@ -72,10 +75,10 @@ const pontoRepositoryInMongo = new PontoRepositoryInMongo();
  */
 
 
- router.get("/idUsuario/:idUsuario", async (req, res) => {
+ router.get("/token/:token", async (req, res) => {
  	try {
- 		const idUsuario = req.params.idUsuario;
- 		const response = await PontoController.BuscarPonto(pontoRepositoryInMongo,Number(idUsuario));
+ 		const token = req.params.token;
+ 		const response = await PontoController.BuscarPonto(pontoRepositoryInMongo,token);
 		res.json(response);
  	} catch (error) {
  		res.status(500).json({ error: "Internal server error" });
