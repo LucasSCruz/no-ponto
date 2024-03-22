@@ -2,24 +2,30 @@ import { ColaboradorAdapter, ColaboradorOutput } from "../../adapters/colaborado
 import { Colaborador } from "../../entities/colaborador.entity";
 import { ColaboradorProps } from "../../entities/props/colaborador.props";
 import { IColaboradorGateway } from "../../interfaces";
+import jwt from "jsonwebtoken";
 
 export class ColaboradorRepositoryInMemory implements IColaboradorGateway {
-	private clientes: Colaborador[] = [];
+	private colaborador: Colaborador[] = [];
 
 	async CriarColaborador(colaboradorProps: ColaboradorProps): Promise<ColaboradorOutput> {
         const novoColaborador = new Colaborador(colaboradorProps)
-		this.clientes.push(novoColaborador);
-		novoColaborador.id = this.clientes.length.toString();
+		this.colaborador.push(novoColaborador);
+		novoColaborador.id = this.colaborador.length.toString();
 		return novoColaborador.object;	
 	}
 
-	async ValidarEGerarToken(email: string): Promise<ColaboradorOutput | null> {
-		const cliente = this.clientes.find((cliente) => cliente.email === email);
-
-		if (!cliente) {
+	async  ValidarEGerarToken(email: string): Promise<string | null> {
+		const colaborador = this.colaborador.find(colab => colab.email === email);
+	
+		if (colaborador) {
+			const payload = {
+				id: colaborador.id
+			};
+	
+			const token = jwt.sign(payload, 'suaChaveSecreta', { expiresIn: '1h' });
+			return token;
+		} else {
 			return null;
 		}
-
-		return ColaboradorAdapter.adaptJsonColaborador(cliente);
 	}
 }
