@@ -12,14 +12,14 @@ export class RegistraPonto {
 
 		const docsRoutes = require("./routes/docs");
 		const indexRoutes = require("./routes/routes");
-		const clienteRoutes = require("./routes/colaborador");
-		const produtosRoutes = require("./routes/ponto");
+		const colaboradorRoutes = require("./routes/colaborador");
+		const pontoRoutes = require("./routes/ponto");
 
 		RegistraPonto.use("/api", indexRoutes);
 		RegistraPonto.use("/api-json", docsRoutes);
 		RegistraPonto.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-		RegistraPonto.use("/api/colaborador", clienteRoutes);
-		RegistraPonto.use("/api/ponto", produtosRoutes);
+		RegistraPonto.use("/api/colaborador", colaboradorRoutes);
+		RegistraPonto.use("/api/ponto", pontoRoutes);
 
 		RegistraPonto.listen(PORT, () => {
 			console.log(`No-ponto app listening on port ${PORT}`);
